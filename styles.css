@@ -1,0 +1,547 @@
+/* =========================================================
+   WHITE PERSONAL ARCHIVE
+   Change the values here to alter the entire site.
+========================================================= */
+:root{
+  --bg:#ffffff;
+  --ink:#111111;
+  --muted:#777777;
+  --line:rgba(17,17,17,.16);
+  --soft:#f4f4f2;
+  --sidebar:210px;
+  --pad:clamp(24px,4vw,64px);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"DM Sans",Arial,sans-serif;
+}
+button,a{font:inherit;color:inherit}
+button{border:0;background:none}
+a{text-decoration:none}
+img{display:block;max-width:100%}
+
+.sidebar{
+  position:fixed;
+  inset:0 auto 0 0;
+  z-index:30;
+  width:var(--sidebar);
+  padding:28px 24px;
+  border-right:1px solid var(--line);
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(10px);
+  display:flex;
+  flex-direction:column;
+}
+
+.brand{
+  display:flex;
+  gap:11px;
+  align-items:center;
+  cursor:pointer;
+  text-align:left;
+}
+.brand-mark{
+  width:42px;
+  aspect-ratio:1;
+  border:1px solid var(--ink);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font:500 10px/1 "DM Mono",monospace;
+}
+.brand-copy{
+  font:500 10px/1 "DM Mono",monospace;
+  letter-spacing:.12em;
+}
+.side-nav{
+  display:grid;
+  gap:4px;
+  margin-top:90px;
+}
+.side-nav .nav-link{
+  display:grid;
+  grid-template-columns:30px 1fr;
+  padding:10px 0;
+  text-align:left;
+  opacity:.45;
+  cursor:pointer;
+  transition:.2s ease;
+}
+.side-nav .nav-link:hover,
+.side-nav .nav-link.active{
+  opacity:1;
+  transform:translateX(4px);
+}
+.nav-index{
+  font:400 9px/1 "DM Mono",monospace;
+  color:var(--muted);
+}
+.sidebar-footer{
+  margin-top:auto;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  display:flex;
+  gap:14px;
+}
+.sidebar-footer a{
+  font:500 10px/1 "DM Mono",monospace;
+}
+
+.stage{
+  margin-left:var(--sidebar);
+}
+.panel{
+  display:none;
+  min-height:100vh;
+  padding:var(--pad);
+}
+.panel.active{
+  display:block;
+  animation:fade-in .35s ease;
+}
+@keyframes fade-in{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+
+.eyebrow{
+  margin:0 0 16px;
+  font:500 10px/1 "DM Mono",monospace;
+  letter-spacing:.14em;
+}
+
+/* HOME -------------------------------------------------- */
+#home{
+  padding-top:0;
+}
+.home-intro{
+  position:sticky;
+  top:0;
+  z-index:2;
+  min-height:100vh;
+  padding:clamp(36px,5vw,76px) 0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  pointer-events:none;
+}
+.home-intro h1{
+  max-width:900px;
+  margin:0;
+  font:400 clamp(58px,8.2vw,132px)/.83 "Instrument Serif",Georgia,serif;
+  letter-spacing:-.045em;
+}
+.home-intro h1 em{font-weight:400}
+.home-intro > p:last-child{
+  margin:24px 0 0;
+  color:var(--muted);
+  font-size:15px;
+}
+
+.home-photo-field{
+  position:relative;
+  z-index:5;
+  margin-top:-45vh;
+  min-height:5200px;
+  pointer-events:none;
+}
+
+.home-photo{
+  position:absolute;
+  width:clamp(180px,24vw,390px);
+  aspect-ratio:1;
+  border:1px solid var(--line);
+  background:#f8f8f6;
+  overflow:hidden;
+  box-shadow:0 14px 40px rgba(0,0,0,.06);
+  opacity:0;
+  transform:translateY(50px) rotate(var(--r,0deg));
+  transition:opacity .8s ease, transform 1s cubic-bezier(.2,.8,.2,1);
+}
+.home-photo.visible{
+  opacity:1;
+  transform:translateY(0) rotate(var(--r,0deg));
+}
+.home-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.home-photo.placeholder::before{
+  content:attr(data-number);
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:#b7b7b0;
+  font:400 12px/1 "DM Mono",monospace;
+}
+.home-photo.placeholder::after{
+  content:"PHOTO";
+  position:absolute;
+  left:12px;
+  bottom:10px;
+  color:#b7b7b0;
+  font:400 8px/1 "DM Mono",monospace;
+  letter-spacing:.12em;
+}
+
+.home-photo:nth-child(6n+1){left:8%;--r:-3deg}
+.home-photo:nth-child(6n+2){right:5%;--r:2deg}
+.home-photo:nth-child(6n+3){left:42%;--r:-1deg}
+.home-photo:nth-child(6n+4){left:3%;--r:2.2deg}
+.home-photo:nth-child(6n+5){right:18%;--r:-2deg}
+.home-photo:nth-child(6n){left:30%;--r:1deg}
+
+.home-photo:nth-child(1){top:4%}
+.home-photo:nth-child(2){top:12%}
+.home-photo:nth-child(3){top:20%}
+.home-photo:nth-child(4){top:28%}
+.home-photo:nth-child(5){top:36%}
+.home-photo:nth-child(6){top:44%}
+.home-photo:nth-child(7){top:52%}
+.home-photo:nth-child(8){top:60%}
+.home-photo:nth-child(9){top:68%}
+.home-photo:nth-child(10){top:76%}
+.home-photo:nth-child(11){top:84%}
+.home-photo:nth-child(12){top:91%}
+
+.home-end{
+  min-height:45vh;
+  display:flex;
+  align-items:end;
+  justify-content:flex-end;
+  padding-bottom:40px;
+}
+.arrow-link{
+  cursor:pointer;
+  border-bottom:1px solid var(--ink);
+  padding:8px 0;
+}
+
+/* SECTION HEAD ----------------------------------------- */
+.section-head{
+  display:grid;
+  grid-template-columns:1fr minmax(240px,340px);
+  align-items:end;
+  gap:30px;
+  padding:10px 0 28px;
+  border-bottom:1px solid var(--line);
+}
+.section-head h2{
+  margin:0;
+  font:400 clamp(66px,9vw,138px)/.78 "Instrument Serif",Georgia,serif;
+  letter-spacing:-.045em;
+}
+.section-head > p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+/* ACHIEVEMENTS ----------------------------------------- */
+.achievement-wall{
+  padding:66px 0 100px;
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:clamp(18px,2.5vw,38px);
+  align-items:start;
+}
+.achievement-card{
+  cursor:pointer;
+  border:1px solid var(--line);
+  background:var(--soft);
+  padding:10px;
+  transition:.22s ease;
+}
+.achievement-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 18px 44px rgba(0,0,0,.07);
+}
+.achievement-card:nth-child(5n+1){grid-column:span 4}
+.achievement-card:nth-child(5n+2){grid-column:span 3;margin-top:68px}
+.achievement-card:nth-child(5n+3){grid-column:span 5;margin-top:20px}
+.achievement-card:nth-child(5n+4){grid-column:span 5}
+.achievement-card:nth-child(5n){grid-column:span 4;margin-top:48px}
+
+.achievement-image{
+  aspect-ratio:1.08;
+  background:white;
+  border:1px solid var(--line);
+  overflow:hidden;
+  position:relative;
+}
+.achievement-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.achievement-image.missing::after{
+  content:"ADD IMAGE";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:#b4b4ad;
+  font:400 9px/1 "DM Mono",monospace;
+  letter-spacing:.12em;
+}
+.achievement-copy{padding:14px 4px 6px}
+.achievement-copy small{
+  font:400 9px/1 "DM Mono",monospace;
+  color:var(--muted);
+}
+.achievement-copy h3{
+  margin:7px 0 5px;
+  font:400 clamp(25px,2.4vw,38px)/.95 "Instrument Serif",Georgia,serif;
+}
+.achievement-copy p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* DECKS ------------------------------------------------ */
+.deck-grid{
+  padding:58px 0 100px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:34px;
+}
+.deck-card{
+  border-top:1px solid var(--ink);
+  padding-top:14px;
+}
+.deck-card-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:20px;
+  align-items:start;
+  margin-bottom:18px;
+}
+.deck-card h3{
+  margin:0;
+  font:400 clamp(34px,4vw,58px)/.9 "Instrument Serif",Georgia,serif;
+}
+.deck-number{
+  color:var(--muted);
+  font:400 9px/1 "DM Mono",monospace;
+}
+.deck-meta{
+  margin:8px 0 0;
+  color:var(--muted);
+  font-size:12px;
+}
+.player-shell{
+  width:100%;
+  background:var(--soft);
+  border:1px solid var(--line);
+  min-height:168px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+}
+.player-shell iframe{
+  width:100%;
+  border:0;
+  display:block;
+}
+.youtube-player{
+  aspect-ratio:16/9;
+  height:auto;
+}
+.soundcloud-player{
+  height:166px;
+}
+.unsupported-player{
+  min-height:168px;
+  padding:24px;
+  text-align:center;
+}
+.listen-link{
+  display:inline-block;
+  margin-top:12px;
+  padding-bottom:3px;
+  border-bottom:1px solid var(--ink);
+  font:500 9px/1 "DM Mono",monospace;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+/* MOVIES ----------------------------------------------- */
+.movie-grid{
+  padding:58px 0 100px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(18px,2.2vw,34px);
+}
+.movie-card{
+  cursor:pointer;
+}
+.movie-poster{
+  aspect-ratio:3/4;
+  background:var(--soft);
+  border:1px solid var(--line);
+  overflow:hidden;
+  position:relative;
+}
+.movie-poster img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .35s ease;
+}
+.movie-card:hover .movie-poster img{
+  transform:scale(1.02);
+}
+.movie-poster.missing::after{
+  content:"POSTER";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:#b5b5af;
+  font:400 9px/1 "DM Mono",monospace;
+  letter-spacing:.12em;
+}
+.movie-copy{
+  padding-top:10px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:5px 12px;
+}
+.movie-copy h3{
+  margin:0;
+  font:400 23px/1 "Instrument Serif",Georgia,serif;
+}
+.movie-copy .rating,
+.movie-copy .details{
+  font:400 9px/1.35 "DM Mono",monospace;
+  color:var(--muted);
+}
+.movie-copy .details{
+  grid-column:1 / -1;
+}
+
+/* EMPTY / ERROR STATES -------------------------------- */
+.data-message{
+  grid-column:1 / -1;
+  padding:30px 0;
+  color:var(--muted);
+  font:400 12px/1.6 "DM Mono",monospace;
+}
+
+/* MODAL ------------------------------------------------ */
+.modal{
+  width:min(720px,calc(100vw - 34px));
+  padding:0;
+  border:1px solid var(--ink);
+  background:white;
+  color:var(--ink);
+  box-shadow:0 30px 90px rgba(0,0,0,.22);
+}
+.modal::backdrop{
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(5px);
+}
+.modal-close{
+  position:absolute;
+  right:14px;
+  top:8px;
+  z-index:2;
+  cursor:pointer;
+  font-size:28px;
+}
+.modal-body{
+  padding:clamp(30px,6vw,70px);
+}
+.modal-body h3{
+  margin:0 0 18px;
+  font:400 clamp(42px,7vw,78px)/.9 "Instrument Serif",Georgia,serif;
+}
+.modal-body p{
+  color:var(--muted);
+  line-height:1.65;
+}
+.modal-body img{
+  width:100%;
+  margin:0 0 26px;
+  max-height:460px;
+  object-fit:contain;
+  background:var(--soft);
+}
+.modal-facts{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  margin-top:24px;
+  padding-top:16px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font:400 9px/1.4 "DM Mono",monospace;
+}
+
+/* RESPONSIVE ------------------------------------------- */
+@media (max-width:980px){
+  :root{--sidebar:0px}
+  .sidebar{
+    inset:auto 0 0 0;
+    width:100%;
+    height:64px;
+    padding:8px 12px;
+    border-right:0;
+    border-top:1px solid var(--line);
+    flex-direction:row;
+    align-items:center;
+  }
+  .brand{width:48px}
+  .brand-copy,.nav-index,.sidebar-footer{display:none}
+  .side-nav{
+    margin:0 0 0 auto;
+    display:flex;
+    gap:14px;
+  }
+  .side-nav .nav-link{
+    display:block;
+    padding:9px 2px;
+    font-size:12px;
+  }
+  .stage{margin-left:0;padding-bottom:64px}
+  .section-head{grid-template-columns:1fr}
+  .achievement-card:nth-child(n){
+    grid-column:span 6;
+    margin-top:0;
+  }
+  .deck-grid{grid-template-columns:1fr}
+  .movie-grid{grid-template-columns:repeat(2,1fr)}
+  .home-photo-field{min-height:4500px}
+}
+
+@media (max-width:620px){
+  .panel{padding-left:20px;padding-right:20px}
+  .home-intro h1{font-size:56px}
+  .home-photo{
+    width:48vw;
+  }
+  .home-photo:nth-child(6n+1),
+  .home-photo:nth-child(6n+4){left:0}
+  .home-photo:nth-child(6n+2){right:0}
+  .home-photo:nth-child(6n+3){left:44%}
+  .home-photo:nth-child(6n+5){right:7%}
+  .home-photo:nth-child(6n){left:22%}
+  .section-head h2{font-size:68px}
+  .achievement-wall{
+    grid-template-columns:1fr;
+    padding-top:34px;
+  }
+  .achievement-card:nth-child(n){grid-column:auto}
+  .movie-grid{gap:14px}
+  .movie-copy h3{font-size:18px}
+  .side-nav{gap:8px}
+  .side-nav .nav-link{font-size:10px}
+}

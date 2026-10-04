@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Personal archive — achievements, The Decks, and movies." />
+  <title>Subhadeep — Personal Archive</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <button class="brand nav-link active" data-section="home" aria-label="Home">
+      <span class="brand-mark">SD</span>
+      <span class="brand-copy">SUBHADEEP</span>
+    </button>
+
+    <nav class="side-nav" aria-label="Main navigation">
+      <button class="nav-link" data-section="achievements"><span class="nav-index">01</span><span>Achievements</span></button>
+      <button class="nav-link" data-section="decks"><span class="nav-index">02</span><span>The Decks</span></button>
+      <button class="nav-link" data-section="movies"><span class="nav-index">03</span><span>Movies</span></button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="#" target="_blank" rel="noopener">IG</a>
+      <a href="#" target="_blank" rel="noopener">SC</a>
+      <a href="#" target="_blank" rel="noopener">IN</a>
+    </div>
+  </aside>
+
+  <main class="stage">
+    <!-- HOME -->
+    <section id="home" class="panel active">
+      <div class="home-intro">
+        <p class="eyebrow">PERSONAL ARCHIVE</p>
+        <h1>Things I’ve <em>done</em>.<br>Things I <em>like</em>.</h1>
+        <p>Achievements, music and films.</p>
+      </div>
+
+      <div id="homePhotoField" class="home-photo-field" aria-label="Photo archive"></div>
+
+      <div class="home-end">
+        <button class="nav-link arrow-link" data-section="achievements">enter archive ↘</button>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="panel">
+      <header class="section-head">
+        <div>
+          <p class="eyebrow">01 / THE WALL</p>
+          <h2>Achievements</h2>
+        </div>
+        <p>Milestones, publications, awards and moments worth keeping.</p>
+      </header>
+      <div id="achievementWall" class="achievement-wall"></div>
+    </section>
+
+    <!-- THE DECKS -->
+    <section id="decks" class="panel">
+      <header class="section-head">
+        <div>
+          <p class="eyebrow">02 / LISTEN</p>
+          <h2>The Decks</h2>
+        </div>
+        <p>SoundCloud and YouTube sets loaded directly from CSV.</p>
+      </header>
+
+      <div id="deckGrid" class="deck-grid"></div>
+    </section>
+
+    <!-- MOVIES -->
+    <section id="movies" class="panel">
+      <header class="section-head">
+        <div>
+          <p class="eyebrow">03 / FILM DIARY</p>
+          <h2>Movies</h2>
+        </div>
+        <p>Posters, ratings and notes from the films I keep.</p>
+      </header>
+      <div id="movieGrid" class="movie-grid"></div>
+    </section>
+  </main>
+
+  <dialog id="modal" class="modal">
+    <button class="modal-close" aria-label="Close">×</button>
+    <div id="modalContent"></div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
